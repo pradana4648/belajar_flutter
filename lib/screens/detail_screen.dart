@@ -11,7 +11,7 @@ class DetailScreen extends StatefulWidget {
 }
 
 class _DetailScreenState extends State<DetailScreen> {
-  int qty = 0;
+  int qty = 1;
 
   @override
   Widget build(BuildContext context) {
@@ -60,7 +60,7 @@ class _DetailScreenState extends State<DetailScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   buildButton(Icons.add, () {
-                    if (qty >= 0) {
+                    if (qty >= 1) {
                       setState(() {
                         qty++;
                       });
@@ -72,7 +72,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     child: Text(qty.toString()),
                   ),
                   buildButton(Icons.remove, () {
-                    if (qty > 0) {
+                    if (qty > 1) {
                       setState(() {
                         qty--;
                       });
