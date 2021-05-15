@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             DrawerHeader(
-              child: Expanded(child: FlutterLogo()),
+              child: FlutterLogo(),
             ),
             ListTile(
               leading: Icon(Icons.settings),
@@ -49,7 +49,17 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               leading: Icon(Icons.info),
               title: Text('About'),
-              onTap: () {},
+              onTap: () {
+                showAboutDialog(
+                  context: context,
+                  applicationName: 'Grocery Shop',
+                  children: [
+                    Text('Sebuah aplikasi dengan Flutter untuk submission :)'),
+                    Text('by: Danar Putra'),
+                  ],
+                  useRootNavigator: true,
+                );
+              },
             ),
           ],
         ),
