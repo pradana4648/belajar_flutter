@@ -5,6 +5,8 @@ class Product {
   final String imageUrl;
   final Color colors;
   final double price;
+  final String description;
 
-  const Product({this.name, this.imageUrl, this.colors, this.price});
+  const Product(
+      {this.name, this.imageUrl, this.colors, this.price, this.description});
 }
