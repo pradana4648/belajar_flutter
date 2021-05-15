@@ -1,6 +1,10 @@
 import 'package:belajar_flutter/data/local_data.dart';
-import 'package:belajar_flutter/widgets/logo.dart';
+import 'package:belajar_flutter/screens/detail_screen.dart';
+import 'package:belajar_flutter/widgets/grocery_item.dart';
+import 'package:belajar_flutter/widgets/header.dart';
 import 'package:flutter/material.dart';
+
+import 'notification_screen.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -8,26 +12,12 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  TextEditingController _controller;
-
-  @override
-  void initState() {
-    _controller = TextEditingController();
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _controller.dispose();
-    super.dispose();
-  }
+  String _result = '';
 
   @override
   Widget build(BuildContext context) {
     final theme = Theme.of(context).textTheme;
-    final size = MediaQuery.of(context).size;
-    print(size.height);
-    print(size.width);
+
     return Scaffold(
       appBar: AppBar(
         centerTitle: true,
@@ -35,54 +25,44 @@ class _HomeScreenState extends State<HomeScreen> {
         actions: [
           IconButton(
             icon: Icon(Icons.notifications),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.of(context).push(
+                MaterialPageRoute(builder: (ctx) {
+                  return NotificationScreen(theme: theme);
+                }),
+              );
+            },
           )
         ],
       ),
-      drawer: Drawer(),
+      drawer: Drawer(
+        child: Column(
+          children: [
+            DrawerHeader(
+              child: Expanded(child: FlutterLogo()),
+            ),
+            ListTile(
+              leading: Icon(Icons.settings),
+              title: Text('Settings'),
+              onTap: () {},
+            ),
+            ListTile(
+              leading: Icon(Icons.info),
+              title: Text('About'),
+              onTap: () {},
+            ),
+          ],
+        ),
+      ),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              // height: size.height * 0.2,
-              padding: const EdgeInsets.all(10),
-              child: Row(
-                children: [
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome',
-                        style: theme.headline2,
-                      ),
-                      Text(
-                        'to our shop',
-                        style: theme.headline4,
-                      ),
-                    ],
-                  ),
-                  Expanded(
-                    child: LayoutBuilder(
-                      builder: (context, constraints) {
-                        if (constraints.maxWidth > 400) {
-                          return BuildLogo(height: 140);
-                        }
-                        if (constraints.maxWidth < 400) {
-                          return BuildLogo(height: 120);
-                        }
-
-                        return BuildLogo(height: 200);
-                      },
-                    ),
-                  )
-                ],
-              ),
-            ),
+            Header(theme: theme),
+            // SearchBar(controller: _controller),
             Padding(
               padding: const EdgeInsets.all(10),
               child: TextFormField(
-                controller: _controller,
                 decoration: InputDecoration(
                   hintText: 'Search your product',
                   border: OutlineInputBorder(
@@ -92,6 +72,11 @@ class _HomeScreenState extends State<HomeScreen> {
                     borderRadius: BorderRadius.circular(10),
                   ),
                 ),
+                onChanged: (value) {
+                  setState(() {
+                    _result = value;
+                  });
+                },
               ),
             ),
             Padding(
@@ -104,52 +89,24 @@ class _HomeScreenState extends State<HomeScreen> {
                   mainAxisSpacing: 10,
                   crossAxisSpacing: 10,
                 ),
-                itemCount: LocalData.productImages.length,
+                itemCount: LocalData.products
+                    .where((element) =>
+                        element.name.toLowerCase().contains(_result))
+                    .length,
                 itemBuilder: (ctx, index) {
-                  return Container(
-                    decoration: BoxDecoration(
-                      color: LocalData.productImages[index].colors,
-                      borderRadius: BorderRadius.circular(10),
-                      image: DecorationImage(
-                        image:
-                            AssetImage(LocalData.productImages[index].imageUrl),
+                  final filteredProducts = LocalData.products
+                      .where((element) =>
+                          element.name.toLowerCase().contains(_result))
+                      .toList();
+                  return GroceryItem(
+                    product: filteredProducts[index],
+                    navigator: () => Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (ctx) =>
+                            DetailScreen(product: filteredProducts[index]),
                       ),
                     ),
-                    child: Padding(
-                      padding: const EdgeInsets.all(10),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Align(
-                            alignment: Alignment.centerRight,
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: IconButton(
-                                icon: Icon(Icons.add),
-                                onPressed: () {},
-                              ),
-                            ),
-                          ),
-                          Expanded(child: SizedBox()),
-                          Text(
-                            LocalData.productImages[index].name,
-                            style:
-                                theme.headline6.copyWith(color: Colors.white),
-                          ),
-                          Text(
-                            '\$' +
-                                LocalData.productImages[index].price
-                                    .toStringAsFixed(2),
-                            style: theme.headline6.copyWith(
-                                fontWeight: FontWeight.w400,
-                                color: Colors.white),
-                          )
-                        ],
-                      ),
-                    ),
+                    theme: theme,
                   );
                 },
               ),
