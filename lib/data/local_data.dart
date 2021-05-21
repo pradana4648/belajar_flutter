@@ -46,7 +46,4 @@ class LocalData {
             description:
                 'Eu consequat sint sint irure. Sint reprehenderit adipisicing mollit et duis proident ea nisi occaecat ad. Proident velit mollit id voluptate adipisicing aliqua ex cupidatat. Et eu aute dolore irure aliqua exercitation enim pariatur in. Voluptate dolore nisi proident ex sint aute.'),
       ];
-
-  // static List<String> get categories =>
-  //     <String>["Produce", 'Bakeries', 'Seafood', 'Diary', 'Vegetables'];
 }
