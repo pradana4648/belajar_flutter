@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 class DetailScreen extends StatefulWidget {
   final Product product;
 
-  const DetailScreen({@required this.product});
+  const DetailScreen({required this.product});
 
   @override
   _DetailScreenState createState() => _DetailScreenState();
@@ -24,7 +24,7 @@ class _DetailScreenState extends State<DetailScreen> {
         child: Text('Buy Now'),
       ),
       appBar: AppBar(
-        title: Text(widget.product.name),
+        title: Text(widget.product.name!),
       ),
       body: Column(
         children: [
@@ -32,7 +32,7 @@ class _DetailScreenState extends State<DetailScreen> {
             height: size.height * 0.4,
             decoration: BoxDecoration(
               image: DecorationImage(
-                image: AssetImage(widget.product.imageUrl),
+                image: AssetImage(widget.product.imageUrl!),
               ),
             ),
           ),
@@ -50,9 +50,9 @@ class _DetailScreenState extends State<DetailScreen> {
               Padding(
                 padding: const EdgeInsets.all(10),
                 child: Text(
-                  '\t\t' + widget.product.description,
-                  style:
-                      textTheme.headline6.copyWith(fontWeight: FontWeight.w400),
+                  '\t\t' + widget.product.description!,
+                  style: textTheme.headline6!
+                      .copyWith(fontWeight: FontWeight.w400),
                 ),
               ),
               Divider(indent: 10, endIndent: 10),

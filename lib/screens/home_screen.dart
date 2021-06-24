@@ -101,12 +101,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 itemCount: LocalData.products
                     .where((element) =>
-                        element.name.toLowerCase().contains(_result))
+                        element.name!.toLowerCase().contains(_result))
                     .length,
                 itemBuilder: (ctx, index) {
                   final filteredProducts = LocalData.products
                       .where((element) =>
-                          element.name.toLowerCase().contains(_result))
+                          element.name!.toLowerCase().contains(_result))
                       .toList();
                   return GroceryItem(
                     product: filteredProducts[index],

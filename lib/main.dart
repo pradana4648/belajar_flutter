@@ -1,5 +1,6 @@
-import 'package:belajar_flutter/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'package:belajar_flutter/screens/home_screen.dart';
 
 void main() => runApp(MyApp());
 
