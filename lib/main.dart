@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'package:belajar_flutter/screens/home_screen.dart';
+import 'grocery/screens/home_screen.dart' as grocery;
 
 void main() => runApp(MyApp());
 
@@ -16,7 +16,7 @@ class MyApp extends StatelessWidget {
         canvasColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      home: grocery.HomeScreen(),
     );
   }
 }

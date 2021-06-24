@@ -1,5 +1,6 @@
-import 'package:belajar_flutter/data/product.dart';
 import 'package:flutter/material.dart';
+
+import 'product.dart';
 
 class LocalData {
   static List<Product> get products => [

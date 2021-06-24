@@ -1,4 +1,4 @@
-import 'package:belajar_flutter/data/product.dart';
+import 'package:belajar_flutter/grocery/data/product.dart';
 import 'package:flutter/material.dart';
 
 class DetailScreen extends StatefulWidget {

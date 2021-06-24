@@ -1,7 +1,7 @@
-import 'package:belajar_flutter/data/local_data.dart';
-import 'package:belajar_flutter/screens/detail_screen.dart';
-import 'package:belajar_flutter/widgets/grocery_item.dart';
-import 'package:belajar_flutter/widgets/header.dart';
+import 'package:belajar_flutter/grocery/data/local_data.dart';
+import 'package:belajar_flutter/grocery/screens/detail_screen.dart';
+import 'package:belajar_flutter/grocery/widgets/grocery_item.dart';
+import 'package:belajar_flutter/grocery/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 import 'notification_screen.dart';
