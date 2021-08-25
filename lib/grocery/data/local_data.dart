@@ -10,41 +10,41 @@ class LocalData {
             colors: Colors.yellow,
             price: 12.00,
             description:
-                'Sit mollit sint elit sit proident eiusmod sit laboris esse ad adipisicing elit. Esse duis duis consequat laboris consequat ex sint. Ea ullamco labore veniam mollit amet. Velit cupidatat aute exercitation ad adipisicing occaecat.'),
+                ' Banana is an elongated usually tapering tropical fruit with soft pulpy flesh enclosed in a soft usually yellow rind a bunch of bananas slipped on a banana peel.'),
         Product(
             name: 'Grape',
             imageUrl: 'assets/images/grape.png',
             colors: Colors.deepPurple,
             price: 10.10,
             description:
-                'Non ipsum laboris duis et est nisi anim laborum reprehenderit. Laborum fugiat deserunt veniam in aliqua dolore ipsum non sint cupidatat minim. Lorem officia cillum duis Lorem cillum.'),
+                'A berry, typically green (classified as white), purple, red, or black, growing in clusters on a grapevine, eaten as fruit, and used in making wine.'),
         Product(
             name: 'Cherry',
             imageUrl: 'assets/images/cherry.png',
             colors: Colors.red[900],
             price: 5.41,
             description:
-                'Commodo ad ut incididunt non duis nostrud non et aute id reprehenderit in. Adipisicing et culpa tempor cillum dolore eu reprehenderit quis velit enim in commodo ullamco. Excepteur cillum est non magna.'),
+                'A cherry is a fruit that grows on a tree or a bush. It belongs to the genus Prunus. It is red in color, with a seed in the middle. '),
         Product(
             name: 'Lemon',
             imageUrl: 'assets/images/lemon.png',
             colors: Colors.yellowAccent,
             price: 3.78,
             description:
-                'Laboris sit elit mollit mollit laborum anim. Sit nulla elit excepteur dolor dolore excepteur. Sint voluptate aute anim proident mollit eiusmod amet labore minim reprehenderit ipsum. Qui dolor officia Lorem reprehenderit. Qui magna nulla enim dolore et fugiat.'),
+                'Lemon is yellow, oval-shaped citrus fruit grows on flowering evergreen trees and is cultivated commercially and in backyard gardens around the world.'),
         Product(
             name: 'Orange',
             imageUrl: 'assets/images/orange.png',
             colors: Colors.orange,
             price: 4.55,
             description:
-                'Officia veniam eu consectetur sint Lorem nisi. Adipisicing irure occaecat non excepteur. Ea tempor mollit nostrud eu mollit enim nisi et nulla. Ut ad eiusmod culpa ex nulla consequat sunt esse incididunt cillum quis minim.'),
+                'Orange fruit is a leathery-leaved evergreen fruit that bears the orange, native to warm regions of South and Southeast Asia. Oranges are a major commercial crop in many warm regions of the world.'),
         Product(
             name: 'Apple',
             imageUrl: 'assets/images/apple.png',
             colors: Colors.red[700],
             price: 8.55,
             description:
-                'Eu consequat sint sint irure. Sint reprehenderit adipisicing mollit et duis proident ea nisi occaecat ad. Proident velit mollit id voluptate adipisicing aliqua ex cupidatat. Et eu aute dolore irure aliqua exercitation enim pariatur in. Voluptate dolore nisi proident ex sint aute.'),
+                ' the round fruit of a tree of the rose family, which typically has thin red or green skin and crisp flesh. Many varieties have been developed as dessert or cooking fruit or for making cider.'),
       ];
 }
