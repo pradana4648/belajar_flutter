@@ -57,10 +57,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     Text('Sebuah aplikasi dengan Flutter untuk submission :)'),
                     Text('by: Danar Putra'),
                   ],
-                  useRootNavigator: true,
                 );
               },
             ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Go Back'),
+              onTap: () => Navigator.of(context).popAndPushNamed('/'),
+            )
           ],
         ),
       ),
