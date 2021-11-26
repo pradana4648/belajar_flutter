@@ -23,6 +23,7 @@ class _CustomDragScreenState extends State<CustomDragScreen> {
         ),
       ),
       body: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
           Row(

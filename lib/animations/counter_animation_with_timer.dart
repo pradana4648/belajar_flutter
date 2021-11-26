@@ -1,14 +1,18 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
-class CounterAnimationScreen extends StatefulWidget {
-  const CounterAnimationScreen({Key? key}) : super(key: key);
+class CounterAnimationWithTimerScreen extends StatefulWidget {
+  const CounterAnimationWithTimerScreen({Key? key}) : super(key: key);
 
   @override
-  _CounterAnimationScreenState createState() => _CounterAnimationScreenState();
+  _CounterAnimationWithTimerScreenState createState() =>
+      _CounterAnimationWithTimerScreenState();
 }
 
-class _CounterAnimationScreenState extends State<CounterAnimationScreen>
+class _CounterAnimationWithTimerScreenState
+    extends State<CounterAnimationWithTimerScreen>
     with TickerProviderStateMixin {
   late final AnimationController animationController = AnimationController(
     vsync: this,
@@ -24,11 +28,25 @@ class _CounterAnimationScreenState extends State<CounterAnimationScreen>
       .animate(
           CurvedAnimation(parent: animationController, curve: Curves.bounceIn));
 
-  int counter = 0;
+  final streamController = StreamController<int>();
+
+  final intTicked = Stream<int>.periodic(Duration(seconds: 1), (tick) {
+    return tick;
+  }).take(10);
+  late StreamSubscription<int> streamSubscription;
+
+  @override
+  void initState() {
+    streamSubscription =
+        intTicked.listen((event) => streamController.sink.add(event))..pause();
+    super.initState();
+  }
 
   @override
   void dispose() {
     animationController.dispose();
+    streamSubscription.cancel();
+    streamController.close();
     super.dispose();
   }
 
@@ -48,37 +66,45 @@ class _CounterAnimationScreenState extends State<CounterAnimationScreen>
               padding: const EdgeInsets.all(20),
               child: FadeTransition(
                 opacity: animation,
-                child: Text(
-                  counter.toString(),
-                  style: Theme.of(context).textTheme.headline5,
-                ),
+                child: StreamBuilder<int>(
+                    stream: streamController.stream,
+                    builder: (context, snapshot) {
+                      return Text(
+                        snapshot.data.toString(),
+                        style: Theme.of(context).textTheme.headline5,
+                      );
+                    }),
               ),
             ),
             TextButton(
               onPressed: () {
                 animationController.forward().then((_) {
-                  setState(() {
-                    counter++;
-                  });
+                  streamSubscription.resume();
                 }).whenComplete(() {
                   animationController.reverse();
                 });
-
-                if (animationController.status == AnimationStatus.completed) {}
               },
-              child: Text('Incremented'),
+              child: Text('Play'),
             ),
             TextButton(
               onPressed: () {
                 animationController.forward().then((_) {
-                  setState(() {
-                    counter--;
-                  });
+                  streamSubscription.pause();
                 }).whenComplete(() {
                   animationController.reverse();
                 });
               },
-              child: Text('Decremented'),
+              child: Text('Pause'),
+            ),
+            TextButton(
+              onPressed: () {
+                animationController.forward().then((_) {
+                  streamSubscription.cancel();
+                }).whenComplete(() {
+                  animationController.reverse();
+                });
+              },
+              child: Text('Reset'),
             ),
           ],
         ),
