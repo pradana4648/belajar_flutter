@@ -1,5 +1,6 @@
-import 'package:belajar_flutter/screens/home_screen.dart';
 import 'package:flutter/material.dart';
+
+import 'routes/routes.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,12 +11,12 @@ class MyApp extends StatelessWidget {
       title: 'Material App',
       theme: ThemeData(
         primaryColor: Colors.white,
-        accentColor: Colors.black,
         appBarTheme: AppBarTheme(elevation: 0),
         canvasColor: Colors.white,
       ),
       debugShowCheckedModeBanner: false,
-      home: HomeScreen(),
+      initialRoute: '/',
+      onGenerateRoute: Routes.onGenerateRoute,
     );
   }
 }

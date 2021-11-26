@@ -5,7 +5,7 @@ import 'logo.dart';
 class Header extends StatelessWidget {
   final TextTheme theme;
 
-  const Header({Key key, @required this.theme}) : super(key: key);
+  const Header({Key? key, required this.theme}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

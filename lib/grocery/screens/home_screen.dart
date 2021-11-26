@@ -1,7 +1,7 @@
-import 'package:belajar_flutter/data/local_data.dart';
-import 'package:belajar_flutter/screens/detail_screen.dart';
-import 'package:belajar_flutter/widgets/grocery_item.dart';
-import 'package:belajar_flutter/widgets/header.dart';
+import 'package:belajar_flutter/grocery/data/local_data.dart';
+import 'package:belajar_flutter/grocery/screens/detail_screen.dart';
+import 'package:belajar_flutter/grocery/widgets/grocery_item.dart';
+import 'package:belajar_flutter/grocery/widgets/header.dart';
 import 'package:flutter/material.dart';
 
 import 'notification_screen.dart';
@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Column(
           children: [
             DrawerHeader(
-              child: Expanded(child: FlutterLogo()),
+              child: FlutterLogo(),
             ),
             ListTile(
               leading: Icon(Icons.settings),
@@ -49,8 +49,23 @@ class _HomeScreenState extends State<HomeScreen> {
             ListTile(
               leading: Icon(Icons.info),
               title: Text('About'),
-              onTap: () {},
+              onTap: () {
+                showAboutDialog(
+                  context: context,
+                  applicationName: 'Grocery Shop',
+                  children: [
+                    Text('Sebuah aplikasi dengan Flutter untuk submission :)'),
+                    Text('by: Danar Putra'),
+                  ],
+                );
+              },
             ),
+            Divider(),
+            ListTile(
+              leading: Icon(Icons.exit_to_app),
+              title: Text('Go Back'),
+              onTap: () => Navigator.of(context).popAndPushNamed('/'),
+            )
           ],
         ),
       ),
@@ -91,12 +106,12 @@ class _HomeScreenState extends State<HomeScreen> {
                 ),
                 itemCount: LocalData.products
                     .where((element) =>
-                        element.name.toLowerCase().contains(_result))
+                        element.name!.toLowerCase().contains(_result))
                     .length,
                 itemBuilder: (ctx, index) {
                   final filteredProducts = LocalData.products
                       .where((element) =>
-                          element.name.toLowerCase().contains(_result))
+                          element.name!.toLowerCase().contains(_result))
                       .toList();
                   return GroceryItem(
                     product: filteredProducts[index],

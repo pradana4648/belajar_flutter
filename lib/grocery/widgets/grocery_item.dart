@@ -1,4 +1,4 @@
-import 'package:belajar_flutter/data/product.dart';
+import 'package:belajar_flutter/grocery/data/product.dart';
 import 'package:flutter/material.dart';
 
 class GroceryItem extends StatelessWidget {
@@ -7,10 +7,10 @@ class GroceryItem extends StatelessWidget {
   final VoidCallback navigator;
 
   const GroceryItem(
-      {Key key,
-      @required this.theme,
-      @required this.product,
-      @required this.navigator})
+      {Key? key,
+      required this.theme,
+      required this.product,
+      required this.navigator})
       : super(key: key);
 
   @override
@@ -24,7 +24,7 @@ class GroceryItem extends StatelessWidget {
         child: Container(
           decoration: BoxDecoration(
             image: DecorationImage(
-              image: AssetImage(product.imageUrl),
+              image: AssetImage(product.imageUrl!),
             ),
           ),
           child: Padding(
@@ -49,12 +49,12 @@ class GroceryItem extends StatelessWidget {
                 ),
                 Expanded(child: SizedBox()),
                 Text(
-                  product.name,
-                  style: theme.headline6.copyWith(color: Colors.white),
+                  product.name!,
+                  style: theme.headline6!.copyWith(color: Colors.white),
                 ),
                 Text(
-                  '\$' + product.price.toStringAsFixed(2),
-                  style: theme.headline6.copyWith(
+                  '\$' + product.price!.toStringAsFixed(2),
+                  style: theme.headline6!.copyWith(
                       fontWeight: FontWeight.w400, color: Colors.white),
                 )
               ],

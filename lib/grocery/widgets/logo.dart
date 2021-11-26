@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 class BuildLogo extends StatelessWidget {
-  const BuildLogo({@required this.height});
+  const BuildLogo({required this.height});
 
   final double height;
 
